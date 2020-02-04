@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fizzbuzz</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    section {
+      max-width: 600px;
+      margin: 0 auto;
+
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+
+    h1 {
+      color: blue;
+      font-size: 40px;
+      margin: 0 0 30px;
+
+    }
+
+    p {
+      margin: 0 0 20px;
+    }
+
+    ul li {
+      margin: 0 0 0 1em;
+      list-style-type: disc;
+      list-style:none;
+
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+  <section>
+    <h1>FizzBuzzゲーム</h1>
+    <p>整数値を入力してください</p>
+    <input type="text" id="fizz" placeholder="Fizz">
+    <input type="text" id="buzz" placeholder="buzz">
+    <button>実行</button>
+    <ul>
+
+    </ul>
+  </section>
+
+
+  <script>
+    'use strict';
+    //ulを取得
+    const list = document.querySelector('ul');
+
+    //FizzBuzz関数
+    function FizzBuzz(i, j) {
+      for (let k = i; k <= j; k++) {
+        if (k % 15 == 0) {
+          list.innerHTML += '<li>FizzBuzz</li>';
+        } else if (k % 3 == 0) {
+          list.innerHTML += '<li>Fizz</li>';
+        } else if (k % 5 == 0) {
+          list.innerHTML += '<li>Buzz</li>';
+        } else {
+          list.innerHTML += '<li>' + k + '</li>';
+        }
+      }
+
+    }
+
+    //buttonを押したら処理
+    document.querySelector('button').addEventListener('click', () => {
+      //テキストボックスのID(fizz,buzz取得)
+      const fizz = document.getElementById('fizz').value;
+      const buzz = document.getElementById('buzz').value;
+      const p = document.querySelector('p');
+      //!isNaNで整数値かどうか判定、&&で両方の値大丈夫なのかを指定
+      if (!isNaN(fizz) && !isNaN(buzz)) {
+        //関数実行
+        p.style.color = 'black';
+        p.textContent = 'FizzBuzz!';
+        FizzBuzz(fizz, buzz);
+      }
+      else {
+        //<p>タグにエラーメッセージ
+        p.style.color = 'red';
+        p.textContent = '整数値で入力してください';
+      }
+    });
+  </script>
+
+</body>
+
+</html>
